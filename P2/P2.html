@@ -1,0 +1,1349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0184)https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CS 211 Project 2: Classes and Objects</title>
+
+<meta name="author" content="Socrates Dimitriadis">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1">
+<style type="text/css">
+@media screen {
+html {
+font-family: serif;
+text-align: justify;
+}
+.src, .example {
+background-color: rgb(245,245,225); /*rgb(225,245,225)*/;
+}
+pre.src, pre.example {
+overflow-x: scroll;
+}
+/* Merge subtitle area with title area */
+.subtitle {
+text-align: center;
+margin-top: -2em;
+padding-top: 1em;
+padding-bottom: 0.1em;
+}
+.title, .subtitle { color: white; background-color: #006633; }
+/* Mason green section borders, left section header style */
+div.outline-2, #table-of-contents {
+background-color: rgb(250,250,250);
+border: 0.75em solid #fc3;
+border-top: 0em;
+padding: 0em .5em .5em .5em; /* top right bottom left */
+margin: 1em 0em 1em 0em; /* top right bottom left */
+}
+div.outline-2 > h2, #table-of-contents > h2 {
+background-color: #006633;
+color: white;
+font-variant: small-caps;
+padding: 0em 0em 0em .5em; /* top right bottom left */
+margin: 0em -.5em 0em -.75em; /* top right bottom left */
+text-align: left;
+}
+blockquote {
+font-style: italic;
+}
+td, th {
+padding-top: 2px;
+padding-bottom: 2px;
+}
+body {
+background-color: #EEE;
+}
+pre {
+}
+#content, #preamble, #postamble {
+margin-left:300px;
+}
+.tag {
+background-color: inherit; font-family: inherit;
+padding: inherit; font-size: 80%; font-weight: inherit;
+text-transform: uppercase;
+}
+.figure p { text-align: inherit; }
+figure-number { font-style: italic; }
+#table-of-contents {
+text-align: left;
+position: fixed;
+left: 0;
+margin: 0 auto;
+padding: 0;
+width: 300px;
+top: 0;
+height: 100%;
+border: 0;
+display: block;
+}
+#text-table-of-contents {
+overflow-y: scroll;
+height: 100%;
+}
+#text-table-of-contents ul {
+padding-left: 1em;
+margin-left: 0.5em;
+}
+#table-of-contents > h2 {
+padding: 0.1em;
+margin: 0;
+}
+/* adjustments for small screen, toc at top only */
+@media (max-width: 570px) { /* landscape for iphone */
+html {
+-webkit-text-size-adjust: none;  /* prevent scaling of text on mobile */
+}
+body {
+background-color: #EEE;
+width:100%;
+margin:0 auto;
+}
+#content, #preamble, #postamble {
+margin-left:0;
+}
+#table-of-contents {
+position: static;
+left: inherit;
+width:inherit;
+height: auto;
+border-top: 0em;
+padding: 0em .5em .5em .5em; /* top right bottom left */
+margin: 1em 0em 1em 0em; /* top right bottom left */
+border: 0.75em solid #006633;
+}
+div.outline-2, #table-of-contents {
+background-color: rgb(250,250,250);
+border: 0.75em solid #006633;
+border-top: 0em;
+padding: 0em .5em .5em .5em; /* top right bottom left */
+margin: 1em 0em 1em 0em; /* top right bottom left */
+}
+div.outline-2 > h2, #table-of-contents > h2 {
+background-color: #006633;
+color: white;
+font-variant: small-caps;
+padding: 0em 0em 0em .5em; /* top right bottom left */
+margin: 0em -.5em 0em -.75em; /* top right bottom left */
+text-align: left;
+}
+#text-table-of-contents {
+overflow-y: visible;
+height: inherit;
+}
+#text-table-of-contents ul {
+padding-left: 1em;
+margin-left: 0.5em;
+}
+}
+}
+@media print {
+html {
+font-family: serif;
+font-size: 10pt;
+text-align: justify;
+}
+}
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">CS 211 Project 2: Classes and Objects</h1>
+<ul class="org-ul">
+    <li><b>Due: Monday, March 1st 2021, 11:59pm</b>
+    </li>
+    <li><i>This assignment is worth 5% of total grade</i>
+    </li>
+</ul>
+
+<p>
+<b>CODE DISTRIBUTION</b>:
+</p>
+<ul class="org-ul">
+<li>Provided files: <a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.zip">P2.zip</a>
+</li>
+</ul>
+
+<p>
+<b>CHANGELOG:</b>
+</p>
+<ul class="org-ul">
+<li>2021-02-20, 4:03PM : Correction regarding the allowed imports (see <a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-2">Section 2.2</a>)</li>
+<li>2021-02-22, 5:17PM : Exception must be raised in <code>getHighestScoreStudent</code>
+    when the list of admitted students is empty (see <a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-3-2">Section 4.2</a>)</li>
+</ul>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-1">1. Overview</a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-2">2. Guidelines and Rules</a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-9">3. <b>class Student</b></a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-3">4. <b>class StudentList</b></a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-4">5. <b>class University</b></a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-5">6. <b>class UniversityList</b></a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-6">7. <b>class Log</b></a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-7">8. <b>class Applications</b></a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-10">9. <b>class Admissions</b></a>
+</li>
+<li><a href="https://mymasonportal.gmu.edu/bbcswebdav/pid-12626867-dt-content-rid-200962979_1/courses/14154.202110_14156.202110_14157.202110_14177.202110_17147.202110_14178.202110_Master/P2/P2.html#sec-8">10. Testing &amp; Grading</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Purpose</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Now that we can write basic procedural code in Java, we want to
+practice writing class definitions, making objects of those classes,
+and interacting with them while solving a non-trivial task.
+</p>
+
+<p>
+We will create classes to make our own over-simplified implementation
+of a list, a class that serves mostly as just a way to collect some
+data, and lastly a "glue" class that uses all the others to solve a
+task. Our task for this project is to implement an addmissions system that
+matches students' applications to universities. You will write code that loads
+various data from files and then performs several calculations as needed. You
+will also generate a log that documents the process (it's handy for debugging!).
+</p>
+
+<p>
+You will implement a simplified version of the
+<a href="https://en.wikipedia.org/wiki/Stable_marriage_problem" target="_blank">Stable marriage
+problem</a>, a variant of which is used for the matching of graduating medical
+students to their first hospital appointments. The logic is quite simple and
+intuitive, you don't need to fully understand the above article.
+
+You have a list of students that apply to colleges, and you have a list of
+universities that accept applications this year. Each student declares an
+<b>ordered list of preferences</b> regarding the universities they want to go to. The
+universities, on the other side, declare the maximum number of students they will
+admit and the minimum SAT score they require. There are only two rules
+you have to keep in mind. If a student can be admitted in multiple universities,
+they will prefer the one with the highet rank in their preference list. If a
+university has to select among competing applicants, it will prefer the student
+with the highest SAT score. Everything else is just common sense.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Task</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Create the files indicated below, and implement the methods described.
+</li>
+<li>Test your code with the provided tester.
+</li>
+<li>Turn in your work on Blackboard.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Setup and Submission</h3>
+
+<div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">Files for this Project</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+The following files are relevant to the project.  Some are provided in
+the project distribution while others you must create. <b>You should not submit
+the files that are provided</b>.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="left">
+
+<col class="left">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">File</th>
+<th scope="col" class="left">State</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">junit-cs211.jar</td>
+<td class="left">provided</td>
+<td class="left">JUnit library for command line testing</td>
+</tr>
+<tr>
+<td class="left">P2Tester.java</td>
+<td class="left">provided</td>
+<td class="left">Runs all tests</td>
+</tr>
+<tr>
+<td class="left">students.csv</td>
+<td class="left">provided</td>
+<td class="left">a list of students in a CSV format (used by the Tester)</td>
+</tr>
+<tr>
+<td class="left">universities.csv</td>
+<td class="left">provided</td>
+<td class="left">a list of universities in a CSV format (used by the Tester)</td>
+</tr>
+<tr>
+<td class="left">applications.csv</td>
+<td class="left">provided</td>
+<td class="left">a list of applications in a CSV format (used by the Tester)</td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+<td class="left">ID.txt</td>
+<td class="left">create</td>
+<td class="left">Create in setup to identify yourself</td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+<td class="left">Admissions.java</td>
+<td class="left">create</td>
+<td class="left">it provides all methods for the admissions matching</td>
+</tr>
+
+<tr>
+<td class="left">Applications.java</td>
+<td class="left">create</td>
+<td class="left">represents a list of college applications</td>
+</tr>
+
+<tr>
+<td class="left">Log.java</td>
+<td class="left">create</td>
+<td class="left">records messages and can report them back</td>
+</tr>
+
+<tr>
+<td class="left">Student.java</td>
+<td class="left">create</td>
+<td class="left">represents one student</td>
+</tr>
+
+<tr>
+<td class="left">StudentList.java</td>
+<td class="left">create</td>
+<td class="left">represents a list of students</td>
+</tr>
+
+<tr>
+<td class="left">University.java</td>
+<td class="left">create</td>
+<td class="left">represents one university</td>
+</tr>
+
+<tr>
+<td class="left">UniversityList.java</td>
+<td class="left">create</td>
+<td class="left">represents a list of universities</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">Submission</h4>
+<div class="outline-text-4" id="text-1-3-3">
+    <ol>
+      <li>Let <i>xxx</i> be your lab section number, and let <i>yyyyyyyy</i> be
+        your GMU userid.  Create the directory <code><i>xxx</i>_<i>yyyyyyyy</i>_P2</code></li>
+      <li>Place all the <code>.java</code> files in the directory you've just created.
+          <span class="notice">Do not put the files that were provided, only the ones you created</span>,
+        and be sure that you submit the <code>.java</code> source files rather than
+        the <code>.class</code> files.</li>
+      <li>Create the file <code>ID.txt</code> in the format shown below, containing your name, userid, G#, lecture section
+        and lab section, and add it to the directory.
+        <p>
+            </p><div class="org-src-container">
+<pre class="src src-sh">Full Name: Donald Knuth
+userID: dknuth
+G#: 00123456
+Lecture section: 004
+Lab section: 213
+</pre>
+            </div>
+      <p></p></li>
+      <li>Compress the directory into a .zip file, and upload the file
+          to Blackboard. <b>Do not e-mail the professor or TAs your code</b>.</li>
+    </ol>
+
+    <p>
+    Failure to submit your work in an appropriately named directory and
+    with the <code>ID.txt</code> file in it with correct information will result in
+    the loss of 5%.
+    </p>
+
+    <p>
+    You may submit as many times as you like; only the final valid
+    submission will be graded. If you turn in late work within 48 hours,
+    there is a penalty (see syllabus). If you turn in late work beyond 48 hours,
+    the submission will be ignored and you will get zero points.
+    </p>
+
+    <p>
+    You should <b>always verify that your submission is successful</b>. Go back
+    to the assignment and download your last submission; is there actually
+    a file there? Can you unzip that file, and see <code>.java</code> files in there
+    as you'd expect? Can you run those files? It turns out you can do
+    quite a bit to ensure you've properly submitted your work. Don't get a
+    zero just because of a failure to actually turn in the right files! It
+    is your responsibility to correctly turn in your work.
+    </p></div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Guidelines and Rules</h2>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<p>
+    </p><ol>
+        <li><span style="color:#f00;font-weight:bold;">This project is an individual effort; the Honor Code applies.</span></li>
+        <li>The only things you can import are the <code>Scanner</code> and the
+            <code>File</code>. Any extra functionality besides the default (i.e.
+            <code>java.lang</code>) is disallowed.</li>
+        <li>The <code>main</code> method will not be tested; you may use it any way you want.</li>
+        <li>You may not use any built-in functionality for copying an array, like <code>System.arrayCopy()</code>,
+            <code>Arrays.copyOf()</code>, <code>Object.clone()</code>, <code>Arrays.stream</code>, etc. If you want to copy an array, you
+            should do it manually (i.e. create a new array and transfer the data).
+        </li>
+        <li>Throughout all classes, we have multiple fields. Their type is provided
+        but their visibility modifier is not. Choose appropriate visibility modifiers
+        for all the instance variables throughout the project. Points will be
+        deducted for improper use of modifiers even if your code passes the tests.</li>
+        <li>Comment your code sufficiently.</li>
+        <li>Format your code clearly and consistently.</li>
+        <li>Each class definition will list the fields that must be present. Be
+        sure to match the type and name exactly. Modifiers, such as <code>public</code> /
+        <code>private</code> and some return types are often left off, and must
+        be selected appropriately as manual grading criteria.</li>
+        <li>Always look for sections <i>manual grading criteria</i> while
+        reading through and implementing this project.</li>
+    </ol>
+<p></p>
+
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-9"><span class="section-number-3">3</span> <b>class Student</b></h2>
+<div class="outline-text-3" id="text-3">
+    <p>An object of this class will represent a single student.</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+    <h3 id="sec-9-1"><span class="section-number-3">3.1</span> fields</h3>
+    <div class="outline-text-3" id="text-9-1">
+        <ul class="org-ul">
+        <li><p><b><code>int id</code></b> : A unique id number</p></li>
+        <li><p><b><code>String name</code></b> : A non unique name. It can be
+            <i>first last</i> or just <i>first</i> or any other string.</p></li>
+        <li><p><b><code>int SAT</code></b> : A numeric value between 0 and 1600.</p></li>
+        <li><p><i>you can add more as needed</i></p></li>
+        </ul>
+    </div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">3.2</span> methods</h3>
+<div class="outline-text-3" id="text-9-2">
+    <ul class="org-ul">
+    <li><p><b><code>Student(id, name, SAT)</code></b> : A constructor that initializes the above fields.</p></li>
+    <li><p><b><code>getId</code></b>, <b><code>getName</code></b>,
+        <b><code>getSAT</code></b> : Getter methods</p></li>
+    <li><p><b><code>copy</code></b> : Not a constructor, but creates and returns a
+    non-alias copy of this object. Useful for sharing the object without allowing modification.</p></li>
+    <li><p><b><code>toString</code></b> : Overrides the default method. Don't forget
+        the <code>@Override</code> annotation. It represents a student in the form of
+        <b><code>id: name</code></b>, e.g. <b><code>1234: Donald Knuth</code></b></p></li>
+    <li><p><b><code>equals(Object other)</code></b> : Overrides the default method
+        and compares this Student to the <code>other</code> student. Don't forget
+        the <code>@Override</code> annotation. It returns <code>true</code> if the
+        two students have the same <code>id</code> and <code>name</code>.
+        <i>Hint: You can start your method with the following code to check if the
+        <code>other</code> object has the proper type, and then, don't forget to
+        cast the <code>other</code> object before you use it.</i>
+</p><pre class="example">if ( ! ( other instanceof Student) ) {
+  return false;
+}
+</pre>
+    </li>
+    <li><p><i>you can add more as needed</i></p></li>
+    </ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> manual grading criteria</h3>
+<div class="outline-text-3" id="text-3-3">
+    <ul>
+        <li>Correct choices for the visibility, the parameters and the return types.</li>
+        <li>Proper documentation of fields and methods, preferably in javadoc style.</li>
+    </ul>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">4</span> <b>class StudentList</b></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The purpose of this class is to create a simplistic list-like structure to
+allow us to group <code>Student</code> values together. We will use an internal
+array of objects to provide functionality such as adding, removing,
+reading, and writing values into the sequence of <code>Student</code> objects. Check slides 47-51
+in this <a href="https://mymasonportal.gmu.edu/webapps/blackboard/execute/content/file?cmd=view&amp;mode=designer&amp;content_id=_12711106_1&amp;course_id=_424156_1" target="_blank">
+lecture presentation</a> for an overview of how memory works with arrays of objects.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">4.1</span> fields</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>An array of <code>Student</code> . You can pick any name you like. It stores
+    all the current student values in an array that is exactly the right length
+    (it should never have extra spots available). When implementing methods
+    below, we will often be creating a new array of a different length and
+    replacing the values of this variable because arrays cannot change length.
+</li>
+<li><p><i>you can add more as needed</i></p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">4.2</span> methods</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li><p><b><code>StudentList()</code></b> : This constructor method initializes
+the internal array to size zero.
+</p></li>
+<li><p><b><code>StudentList(String filename)</code></b> : This constructor
+method initializes the internal array by loading data from a file. The file will
+contain one line per student with <code>id,name,SAT</code> as in the example
+below:
+</p><pre class="example">1054,Charles,1373
+1042,Joseph,1089
+1049,Thomas Jefferson,1394
+1139,Edward,1031
+</pre>
+</li>
+<li><p><b><code>StudentList copy()</code></b> : This is <b>not</b> a constructor
+method itself; it does create a different <code>StudentList</code>
+object (with no aliases to itself) and returns this new copy.
+</p></li>
+<li><p><b><code>int size()</code></b> : Returns how many items are currently in the
+list.
+</p></li>
+<li><p><b><code>get(int index)</code></b> : Returns the value at the provided index.
+    Must throw a <code>RuntimeException</code> when the index is out of bounds.
+    This can be done with the following statement in Java:
+    <code>throw new RuntimeException()</code>
+</p></li>
+<li><p><b><code>void set(int index, Student value)</code></b> : Changes the
+value at the given index to the new <code>value</code>. Must throw a
+<code>RuntimeException</code> when the index is out of bounds.
+</p></li>
+<li><p><b><code>indexOf(Student value)</code></b> : Finds the given value and
+    returns that value's index in the list. Must return <code>-1</code> when the
+    value is not found (do not throw an exception).
+</p></li>
+<li><p><b><code>void add(Student value)</code></b> : Adds the <code>value</code>
+    to the end of the internal array. Since arrays can't change length, you must
+    create a new array of the exact new required size, copy values over, and
+    place the given value at the end. Must throw a <code>RuntimeException</code>
+    if the given value is <code>null</code>.
+</p></li>
+<li><p><b><code>void insert(int index, Student value)</code></b> : Has the effect
+    of inserting this value in the list so that <code>value</code> is the new
+    value at <code>index</code>, and any values previously at that location or
+    later have all been pushed to the right by one. Must throw a
+    <code>RuntimeException</code> if the given value is <code>null</code>. Must
+    throw a <code>RuntimeException</code> if the given index is out of
+    bounds: It may be any index of the current array or equal to one larger than
+    the last valid index, but no larger.
+</p></li>
+<li><p><b><code>void remove(Student value)</code></b> : Finds and removes the
+    <code>value</code> from the list. All values that were after it will be
+    shifted one spot towards the beginning of the list. Must throw a
+    <code>RuntimeException</code> when the given <code>value</code> does not
+    exist in the list.
+</p></li>
+<li><p><b><code>getHighestScoreStudent</code></b> : Returns the student that has
+    the highest SAT score. Must throw a <code>RuntimeException</code> when there
+    are no students admitted.</p></li>
+<li><p><b><code>toString</code></b> : Overrides the default method. Don't forget
+    the <code>@Override</code> annotation. It represents a list a comma
+    separated representations of <code>Student</code>s enclosed in curly braces.
+    <br>For example, if there were three students in the list "<code>1234:
+    Donald Knuth</code>", "<code>99: John von Neumann</code>", and "<code>567:
+    Alan Turing</code>", then we would return "<code>{1234: Donald Knuth, 99:
+    John von Neumann, 567: Alan Turing}</code>".
+</p></li>
+<li><p><i>you can add more as needed</i></p></li>
+
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">4.3</span> manual grading criteria</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+</p><ul>
+    <li>The internal array is replaced by a new array whose size is always
+    exactly one spot longer or shorter than before. (Not for credit, but think,
+    is there a better approach?)</li>
+    <li>Optimal reuse of other methods and classes. You must <b>not</b> rewrite
+        any code if you can get the result you want by calling another method.</li>
+    <li>Correct choices for the visibility, the parameters and the return types.</li>
+    <li>Proper documentation of fields and methods, preferably in javadoc style.</li>
+</ul>
+<p></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">5</span> <b>class University</b></h2>
+<div class="outline-text-3" id="text-4">
+    <p>An object of this class will represent a single university.</p>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-4">5.1</span> fields</h3>
+<div class="outline-text-3" id="text-4-1">
+    <ul class="org-ul">
+    <li><p><b><code>int id</code></b> : A unique id number</p></li>
+    <li><p><b><code>String name</code></b> : A unique name</p></li>
+    <li><p><b><code>int numOfPositions</code></b> : A positive number that denotes
+    how many positions the university has available this year.</p></li>
+    <li><p><b><code>minSAT</code></b> : The minimum SAT score that the university
+    will accept. Note though that during the matching process we can disable that
+    and let the matching process complete as if no minimum is set.</p></li>
+    <li>a <b><code>StudentList</code></b> that will be used to store the
+    admitted students. You can use any name you like.</li>
+    <li><p><i>you can add more as needed</i></p></li>
+    </ul>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-4">5.2</span> methods</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li><p><b><code>University(id, name, numOfPositions, minSAT)</code></b> : A
+constructor that initializes the above fields.</p></li>
+<li><p><b><code>getId</code></b>, <b><code>getName</code></b>,
+<b><code>getNumOfPositions</code></b>, <b><code>getMinSAT</code></b> : Getter
+methods</p></li>
+<li><p><b><code>void activateMinSAT(boolean value)</code></b> : Activates or
+deactivates the use of the SAT threshold during the matching process. It will
+be called before the matching process begins.</p></li>
+<li><p><b><code>boolean admit(Student value)</code></b> : Decides whether to
+    admit a student or not. If the student is admissible, it is added to the
+    list of admitted students and returns true, otherwise it returns false.</p></li>
+<li><p><b><code>getAdmittedStudents</code></b> : Returns the <code>StudentList</code>
+    of the admitted students. It can be called at any time, even during the
+    matching process. It assumes that the caller will not modify the returned list
+    but wants it only for inspection.</p></li>
+<li><p><b><code>lastAdmittedStudentSAT</code></b> : Returns the lowest SAT score
+    among the students that were admitted to the university.</p></li>
+<li><p><b><code>void resetAdmissions</code></b> : Clears the internal storage of
+    the admitted students and frees any memory that was previously allocated for
+    it. It's useful if we want to rerun the matching process with different
+    parameters (e.g. activate/deactivate the min SAT score).</p></li>
+<li><p><b><code>toString</code></b> : Overrides the default method. Don't forget
+    the <code>@Override</code> annotation. It represents a university in the form
+    of <b><code>id: name</code></b>, e.g. <b><code>113: George Mason University
+    </code></b></p></li>
+<li><p><b><code>equals(Object other)</code></b> : Overrides the default method
+    and compares this University to the <code>other</code> university. Don't forget
+    the <code>@Override</code> annotation. It returns <code>true</code> if the
+    two universities have the same <code>id</code> and <code>name</code>.
+</p></li>
+<li><p><i>you can add more as needed</i></p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">5.3</span> manual grading criteria</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul>
+    <li>Correct choices for the visibility, the parameters and the return types.</li>
+    <li>Proper declaration of additional fields/methods.</li>
+    <li>Proper documentation of fields and methods, preferably in javadoc style.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">6</span> <b>class UniversityList</b></h2>
+<div class="outline-text-2" id="text-5">
+<p>This class has many things in common with <code>StudentList</code>. It stores
+    multiple universities instead of multiple students in a list that can
+    grow/shrink via the provided methods. <b>It is strongly recommended</b> that
+    you first complete the <code>class StudentList</code> and pass all its tests
+    before you start working on this one.
+</p>
+</div>
+
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">6.1</span> fields</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+    <li>An array of <code>University</code> . You can pick any name you like. It stores
+        all the current University values in an array that is exactly the right length
+        (it should never have extra spots available).
+    </li>
+    <li><p><i>you can add more as needed</i></p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">6.2</span> methods</h3>
+<div class="outline-text-3" id="text-5-2">
+    <ul class="org-ul">
+    <li><p><b><code>UniversityList()</code></b> : This constructor method initializes
+    the internal array to size zero.
+    </p></li>
+    <li><p><b><code>UniversityList(String filename)</code></b> : This constructor
+    method initializes the internal array by loading data from a file. The file
+    will contain one line per university with <code>id,name,available_positions,minimum_SAT</code>
+    as in the example below:
+</p><pre class="example">309,Virginia Tech,7,1400
+141,George Washington University,6,1200
+273,University of Virginia,5,1500
+165,James Madison University,4,1100
+113,George Mason University,8,1300
+</pre>
+    </li>
+    <li><p><b><code>int size()</code></b> : Returns how many items are currently in the
+    list.</p></li>
+    <li><p><b><code>get(int index)</code></b> : Returns the value at the provided index.
+        Must throw a <code>RuntimeException</code> when the index is out of bounds.</p></li>
+    <li><p><b><code>void set(int index, University value)</code></b> : Changes the
+    value at the given index to the new <code>value</code>. Must throw a
+    <code>RuntimeException</code> when the index is out of bounds.
+    </p></li>
+    <li><p><b><code>indexOf(University value)</code></b> : Finds the given value
+    and returns that value's index in the list. Must return <code>-1</code> when
+    the value is not found (do not throw an exception).
+    </p></li>
+    <li><p><b><code>indexOf(int universityId)</code></b> : It's an overloaded version
+    of the previous method. It does the same operation but this one finds the
+    university based on its <code>id</code>. Must return <code>-1</code> when a
+    university with that id is not found in the list.
+    </p></li>
+    <li><p><b><code>void insert(University value)</code></b> : This method works
+        differently from the namesake method in <code>StudentList</code>. It
+        takes one parameter only because the index where the <code>value</code>
+        is to be inserted, is not provided by the caller but it's inferred by the
+        method itself. The insertion must occur in the index that will have the
+        effect of preserving the list ordered (in ascending alphanumerical order
+        based on the name of the university). The method throws a
+        <code>RuntimeException</code> if the given value is <code>null</code>.
+    </p></li>
+    <li><p><b><code>toString</code></b> : Overrides the default method. Don't forget
+        the <code>@Override</code> annotation. It represents a list a comma
+        separated representations of <code>University</code>s enclosed in curly
+        braces. <br>For example, if there were two universities in the list,
+        "George Mason University" and "University of Virginia", then we would
+        return "<code>{113: George Mason University, 273: University of Virginia}</code>".
+    </p></li>
+    <li><p><i>you can add more as needed</i></p></li>
+
+    </ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">6.3</span> manual grading criteria</h3>
+<div class="outline-text-3" id="text-5-3">
+    <p>
+    </p><ul>
+        <li>Optimal expansion of the array.</li>
+        <li><b>No sorting</b> of the list. Method <code>insert</code> must
+            insert the value in the proper spot without any use of sorting.</li>
+        <li>Optimal reuse of other methods and classes. You must <b>not</b> rewrite
+            any code if you can get the result you want by calling another method.</li>
+        <li>Correct choices for the visibility, the parameters and the return types.</li>
+        <li>Proper documentation of fields and methods, preferably in javadoc style.</li>
+    </ul>
+    <p></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">7</span> <b>class Log</b></h2>
+<div class="outline-text-2" id="text-6">
+<p>
+When performing an involved process, we might want to output messages to a
+separate source to dig through later. This is often called <i>logging</i>. Our
+<code>Log</code> class will allow us to store multiple string messages one at a
+time via <code>record(..)</code>, and also get back the whole sequence of
+messages via <code>read()</code>. You can add these calls anywhere you want in
+your code to help you with debugging. We will assume that each message is a
+single line of text.
+</p>
+
+</div>
+
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">7.1</span> fields</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>your choice! What do you need, in order to complete this class's
+duties?
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">7.2</span> methods</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li><p><b><code>Log()</code></b> : The constructor creates a new (and empty) log.
+</p></li>
+<li><p><b><code>copy()</code></b> : Not a constructor, but creates a no-aliases
+copy of this log and returns it. Useful for sharing the information
+without allowing modification.
+</p></li>
+<li><p><b><code>String[] read()</code></b> : Returns an array of strings where each
+item in the array is the next line of recorded content.
+</p></li>
+<li><p><b><code>void record(String msg)</code></b> : Records the given message as
+the next line inside the log object. Assumes there are no newline characters in
+the message.</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">7.3</span> manual grading criteria</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Make reasonable choices for the internal state of your <code>Log</code> class,
+and justify it in the comments preceding the fields. There are
+multiple good answers (full credit) available, you don't have to read
+our minds to succeed here. But do give more comments than usual
+explaining your reasoning.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">8</span> <b>class Applications</b></h2>
+<div class="outline-text-2" id="text-7">
+<p>
+The purpose of this class is to keep track of all the students' applications to
+universities. It maintains an array of student IDs and, for each student, an array
+of the university IDs they applied to. So, this class doesn't create a
+<code>StudentList</code> or a <code>UniversityList</code>, it only stores a
+mapping of IDs to IDs.
+</p>
+</div>
+
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">8.1</span> fields</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>an array of type <b><code>int[]</code></b> that has a name of your choice! This
+    array is for storing the <code>Student</code> IDs. Keep in mind that this array
+    does not necessarily have the same size with the <code>StudentList</code> as
+    there may be students that haven't applied anywhere this year.
+</li>
+<li>an array of type <b><code>int[][]</code></b> that has a name of your choice!
+    This array is for storing the <code>University</code> IDs. Each row
+    corresponds to a certain student (there is one to one mapping with the previous
+    array) and each column correponds to a university ID (ordered from highest
+    preference in column 0 to lowest preference in the last column). Keep in
+    mind that not all students have the same number of applications.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">8.2</span> methods</h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li><p><b><code>Applications(String filename)</code></b> : The constructor method
+initializes the internal array by loading data from a file. The file will
+contain one line per student with <code>student_id, university_id_1, university_id_2,...</code>
+as in the example below:
+</p><pre class="example">1054,113,141,165
+1042,273,141,309,165,113
+1049,165,309,113,141
+1139,165,309
+</pre>
+<p>In the above example, student with id <code>1054</code> applied to 3 universities.
+His first preference is the university with id <code>113</code>, his second
+preference is the university with id <code>141</code> and his third preference
+is the university with id <code>165</code>. The second student has applied to 5
+universities, the third student to 4 universities, and the fourth student to 2
+universities.</p>
+<p>The records should be stored in the same order that they appear in the file.
+    Sorting is <b>not</b> required. No need for incremental expansions of the
+    array either; you can initialize it with the proper size right from the
+    beginning.</p>
+</li>
+    <li><p><b><code>int size()</code></b> : Returns the size of the array.</p></li>
+    <li><p><b><code>getStudentId(int index)</code></b> /: Returns the <code>id</code>
+        of the student located at a certain <code>index</code>.</p></li>
+    <li><p><b><code>int[] getStudentSelections(int studentId)</code></b> : Returns
+        a reference to the array of student applications in their original order
+        of preference. Must throw a <code>RuntimeException</code> when the
+        <code>studentId</code> doesn't exist.</p></li>
+    <li><p><b><code>int[] getStudentsByUniversity(int universityId)</code></b> :
+        Returns an array of student IDs that applied to a certain university (in
+        the same order that they appear in the file).</p></li>
+    <li><p><b><code>getUniversityByStudentsRank(int studentId, int rank)</code></b> :
+        Returns the ID of the university that student with <code>studentId</code>
+        ranked at position <code>rank</code> in his preferences. Must throw a
+        <code>RuntimeException</code> if either parameter is invalid.</p></li>
+    <li><p><b><code>toString</code></b> : Overrides the default method and returns
+        a slightly less ugly representation. Don't forget
+        the <code>@Override</code> annotation. It represents a list a comma
+        separated representations of <code>applications</code> enclosed in curly
+        braces. <br>For example, the return value for the above file would be
+        "<code>{1054: 113 141 165, 1042: 273 141 309 165 113, 1049: 165 309 113 141, 1139: 165 309}</code>".
+    </p></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">8.3</span> manual grading criteria</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+</p><ul>
+    <li>No need for advanced list operations (add, insert, etc.) Array must be
+        populated by direct access to its values.</li>
+    <li>Optimal reuse of other methods and classes. You must <b>not</b> rewrite
+        any code if you can get the result you want by calling another method.</li>
+    <li>Correct choices for the visibility, the parameters and the return types.</li>
+    <li>Proper documentation of fields and methods, preferably in javadoc style.</li>
+</ul>
+<p></p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">9</span> <b>class Admissions</b></h2>
+<div class="outline-text-2" id="text-10">
+<p>
+The purpose of this class is to run the matching process for college admissions
+and also provide a few methods for running some basic statistics. Make sure you
+complete all other classes before you start working on this one.</p>
+</div>
+
+<div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">9.1</span> fields</h3>
+<div class="outline-text-3" id="text-10-1">
+<ul class="org-ul">
+<li>your choice! What do you need, in order to complete this class's duties?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-10-2" class="outline-3">
+<h3 id="sec-10-2"><span class="section-number-3">9.2</span> methods</h3>
+<div class="outline-text-3" id="text-10-2">
+<ul class="org-ul">
+<li><p><b><code>Admissions(StudentList s, UniversityList u, Applications a)</code></b> :
+    The constructor method is provided with the three objects that are needed to
+    run the matching process. You <b>must not modify any of the input
+    parameters</b>; work on copies if you want to make any changes.</p></li>
+    <li><p><b><code>void matching(boolean minSATactivated)</code></b> : This is the
+    method that does all the work for the matching process. It takes one
+    parameter only, a boolean flag, that defines whether the matching will
+    be run with or without the minimum SAT threshold that each university
+    has defined for its admissions process. In other words, we want to have
+    the flexibility to adjust the process (for special situations like the
+    covid-19 pandemic, etc.) and allow the matching to disregard the minimum
+    SAT threshold that universities normally set.</p>
+    <p>At this moment, we don't ask you to generate a specific <code>log</code>
+    for the matching process, but you <b>must integrate the <code>logging</code>
+    in this method</b>. All you have to do is invoke the Log's
+    <code>record(message)</code> method in certain locations of your code. You
+    can use any messages you want right now, and later we might ask you to
+    change them to specific ones (of course, there will be an announcement if
+    that happens).
+    </p></li>
+    <li><p><b><code>StudentList studentsWithoutApplication()</code></b> : Returns
+    a list of students that haven't applied to any university. Keep in mind that
+    the <code>Applications</code> list is independent from the <code>StudentList</code>;
+    it doesn't necessarily mean that all students in the current year will apply
+    to some university.</p></li>
+    <li><p><b><code>StudentList studentsWithApplication()</code></b> : Returns
+    a list of students that have applied to at least one university this year.</p></li>
+    <li><p><b><code>int numOfMatchings()</code></b> : Returns the total number of
+    students (based on the applications, not on the whole list of students) that
+    have be matched to a university.</p></li>
+    <li><p><b><code>int numOfUnfilledPositions()</code></b> : Returns the total
+    number of university positions that remain unfilled. Due to the SAT threshold
+    and the specific order of preferences that students declare in their
+    applications, it is not guranteed that all university positions will be
+    filled.</p></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-10-3" class="outline-3">
+<h3 id="sec-10-3"><span class="section-number-3">9.3</span> manual grading criteria</h3>
+<div class="outline-text-3" id="text-10-3">
+<p>
+</p><ul>
+    <li>No modification of the inputs to the constructor.</li>
+    <li>Proper use of <code>logging</code> for the matching process.</li>
+    <li>Optimal reuse of other methods and classes. You must <b>not</b> rewrite
+        any code if you can get the result you want by calling another method.</li>
+    <li>Correct choices for the visibility, the parameters and the return types.</li>
+    <li>Proper documentation of fields and methods, preferably in javadoc style.</li>
+</ul>
+<p></p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">10</span> Testing &amp; Grading</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> Grading Breakdown</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Grading for this project (and the others later in the semester) will
+be divided into two distinct parts: Automated testing, and manual inspection.
+</p>
+</div>
+
+<div id="outline-container-sec-8-1-1" class="outline-4">
+<h4 id="sec-8-1-1">Automated Testing</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<ul class="org-ul">
+<li>A set of JUnit test cases will be provided to detect errors in your code.
+    Keep in mind that <span style="color:#f00;font-weight:bold;">this is not the
+    same set of tests that we will use for the automated grading</span>.
+</li>
+<li>Some basic tests will be available on initial release but more will be
+    posted at a later time. Tests may be expanded, changed, and corrected as the
+    deadline approaches. <b>It is your responsibility to get and use the most
+    recent release of tests.</b></li>
+<li>If your code fails to compile against the <i>automated grading tests</i>,
+    no credit will be garnered for this section.</li>
+<li>Code that does not compile and run tests according to the specified
+command line invocation may <b>lose all automated testing credit.</b>
+Graders will usually try to fix a small compilation error such as a bad
+directory structure or a wrong filename. Such corrections typically result in a
+penalty on automated testing. However, if more than a small amount
+of error to fix problems seems required, <b>no credit will be given</b>.</li>
+<li>Most of the credit will be divide evenly among the tests. However, the
+    teaching staff reserves the right to adjust the weights if deemed necessary.</li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-8-1-2" class="outline-4">
+<h4 id="sec-8-1-2">Manual Grading</h4>
+<div class="outline-text-4" id="text-8-1-2">
+<ul class="org-ul">
+<li>Teaching staff (GTAs) will manually inspect your work looking for a
+    specific set of features. They are generally listed as <i>manual grading
+    criteria</i> throughout the document.</li>
+<li>Credit will be deducted from automated testing if you violate any of the
+    rules in this project. The penalty can be as severe as losing all the credit
+    that was assigned from automated testing.</li>
+<li>Credit will also be awarded/deducted based on adherence to good
+coding style, which includes:
+<ul class="org-ul">
+<li>Good indentation and curly brace placement (be consistent and
+follow a common convention)
+</li>
+<li>Comments describing each field and method (preferably in javadoc style)
+</li>
+<li>Comments describing a complex section of code and invariants which
+must be maintained for classes
+</li>
+<li>Use of internal/helper private methods to decompose the problem beyond
+what is required in the spec, as needed
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> Testing</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Graders will mostly run tests on the command line while grading so it
+is in your own interest to verify that your code passes the tests when
+run on the command line, as it will let you see what you will get on
+this portion of the assignment.
+</p>
+
+<p>
+To run the tests <i>on the command line</i>, make sure that
+<code>junit-cs211.jar</code> is in the project directory. This file contains the
+<code>JUnit</code> library for running tests, and is part of the code
+distribution linked at the top of the project specification).
+</p>
+
+<p>
+<b>Systems Discrepancy</b>: Windows uses a <span class="underline">semicolon</span> to separate paths,
+but Unix/Mac OSX uses a <span class="underline">colon</span> in the same place (see below). It is
+easy to overlook the difference! They look nearly the same if you're
+not looking closely. We will provide both versions here, but pay
+attention to what machine you're on and use the correct style.
+</p>
+
+<p>
+<b>Unix Users (including Mac OS X)</b>: To test your code use the following
+commands at the terminal. The OS-prompt here is <code>demo$</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">demo$ javac -cp .:junit-cs211.jar *.java
+demo$ java -cp .:junit-cs211.jar P2Tester
+JUnit version 4.12
+................................................................................
+Time: 0.088
+
+OK (XX tests)
+</pre>
+</div>
+
+<p>
+<b>Windows Users</b>: To test your code use the following commands which
+replaces colons with <b>SEMICOLONS</b>. Other examples throughout the
+specification will use colons, but you are smart and will remember to
+use semicolons in all situations like this classpath situation. Here,
+the prompt is shown as <code>&gt;</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">&gt; javac -cp .;junit-cs211.jar *.java
+&gt; java -cp .;junit-cs211.jar P2Tester
+JUnit version 4.12
+...............
+Time: 0.137
+
+OK (XX tests)
+</pre>
+</div>
+
+
+<p>
+When any tests either crash or give the wrong answer, <code>JUnit</code>'s output
+will give further details about each. Focus on the traceback, find the
+lines of your own code that are involved, as well as the specific
+testing method. Inspect what that test is working on, what's happening
+in your code, and where you'd like your code to behave
+differently. Sometimes you need to get your code to stop crashing;
+other times, it's running but returning the wrong answer. Always,
+there's valuable information provided when a test fails, and it's up
+to you to gain familiarity with these tracebacks and diagnosing what's
+wrong in your code. You can do it!
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3" class="outline-3">
+<h4 id="sec-8-3">Testing with Dr. Java</h4>
+<div class="outline-text-3" id="text-8-3">
+<p>
+DrJava can run these tests by opening the tester file and
+clicking on the <i>Test</i> button. Be sure to successfully <b>compile
+first</b>. Click on test errors to jump to the test code. This
+JUnit testing integration is one of the reasons DrJava is supported in
+our class. (The debugger, and small stand-alone nature of it are two others).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">George Mason University, Department of Computer Science</p>
+<p class="date">2021-02-18</p>
+</div>
+
+
+</body></html>
